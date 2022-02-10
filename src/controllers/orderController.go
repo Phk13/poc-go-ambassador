@@ -146,33 +146,8 @@ func CreateOrder(c *fiber.Ctx) error {
 
 	tx.Commit()
 
-	// source.PaymentIntent = nil
-	// source.SetupIntent = nil
-	// source.Subscription = nil
-	// return c.JSON(source)
+	return c.JSON(source)
 
-	return c.JSON(fiber.Map{
-		"allow_promotion_codes":  source.AllowPromotionCodes,
-		"cancel_url":             source.CancelURL,
-		"customer_details":       source.CustomerDetails,
-		"amount_subtotal":        source.AmountSubtotal,
-		"amount_total":           source.AmountTotal,
-		"client_reference_id":    source.ClientReferenceID,
-		"currency":               source.Currency,
-		"customer":               source.Customer,
-		"customer_email":         source.CustomerEmail,
-		"deleted":                source.Deleted,
-		"id":                     source.ID,
-		"line_items":             source.LineItems,
-		"livemode":               source.Livemode,
-		"locale":                 source.Locale,
-		"metadata":               source.Metadata,
-		"mode":                   source.Mode,
-		"object":                 source.Object,
-		"payment_intent":         source.PaymentIntent,
-		"payment_method_options": source.PaymentMethodOptions,
-		"payment_method_types":   source.PaymentMethodTypes,
-	})
 }
 
 func CompleteOrder(c *fiber.Ctx) error {

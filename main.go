@@ -1,6 +1,8 @@
 package main
 
 import (
+	"encoding/json"
+
 	"github.com/phk13/poc-go-ambassador/src/database"
 	"github.com/phk13/poc-go-ambassador/src/routes"
 
@@ -14,7 +16,10 @@ func main() {
 	database.SetupRedis()
 	database.SetupCacheChannel()
 
-	app := fiber.New()
+	app := fiber.New(fiber.Config{
+		JSONEncoder: json.Marshal,
+		JSONDecoder: json.Unmarshal,
+	})
 
 	app.Use(cors.New(cors.Config{
 		AllowCredentials: true,
